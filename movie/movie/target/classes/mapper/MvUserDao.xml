@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smileyan.movie.dao.MvUserDao">
+    <!--<select id="getById" resultType="cn.smileyan.movie.entity.MvOa">-->
+        <!--select *-->
+        <!--from mv_oa-->
+        <!--where oa_id = #{oaId}-->
+    <!--</select>-->
+    <!-- 添加用户 -->
+    <insert id="insertUser" parameterType="cn.smileyan.movie.entity.MvUser">
+        insert into mv_user(user_id, oa_id, username, password,
+                              money, portrait_url, openid, date_create, date_last_change,
+                              url_last_login, sex, city, nickname)
+                     values(#{userId,jdbcType=VARCHAR},#{oaId,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
+                            #{money,jdbcType=FLOAT},#{portraitUrl,jdbcType=VARCHAR},#{openid,jdbcType=VARCHAR},#{dateCreate,jdbcType=DATE},#{dateLastChange,jdbcType=DATE},
+                            #{urlLastLogin,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR}
+                     )
+    </insert>
+
+    <!--根据用户名查询id-->
+    <select id="getIdByUsername" resultType="java.lang.String">
+        select user_id
+        from mv_user
+        where username= #{username}
+    </select>
+
+    <!--根据用户名查询-->
+    <select id="getIdByUsernameAndPassword" resultType="java.lang.String">
+        select user_id
+        from mv_user
+        where username= #{username}
+    </select>
+
+    <!--根据用户id查询用户信息-->
+    <select id="getUserInfoById" resultType="cn.smileyan.movie.entity.MvUser">
+        select user_id,oa_id,username,money,portrait_url,openid,date_create,date_last_change,url_last_login,sex,city,nickname
+        from mv_user
+        where user_id= #{userId}
+    </select>
+
+
+    <!-- 删除用户 -->
+    <delete id="deleteById" parameterType="java.lang.String" >
+        delete from mv_user
+        where user_id = #{userId}
+    </delete>
+
+</mapper>

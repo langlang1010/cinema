@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+jdbc:
+  driver: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+  user: movie
+  password: mypass123
+
+
+logging:
+  level:
+   cn.smileyan.movie.dao: debug
+
+
+#mybatis
+mybatis_config_file:   mybatis-config.xml
+mybatis_mapper_path:  /mapper/**.xml
+entity_package: cn.smileyan.movie.entity
+
